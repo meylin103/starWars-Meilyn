@@ -66,10 +66,6 @@ useEffect(() => {
 
 }, []);
 
-/* fetch("https://www.swapi.tech/api/people/1")
-   .then(res => res.json())
-  .then(data => console.log(data))
-   .catch(err => console.error(err))*/
 
 return (
   <div className="container">
@@ -77,21 +73,21 @@ return (
 
     <h3>People</h3>
     <div className="d-flex flex-row" style={{ overflowX: "auto", whiteSpace: "nowrap" }}>
-      {store.character.map((value, index) => (
+      {store.character?.map((value, index) => (
         <CardPeople key={index} people={value} />
       ))}
     </div>
 
     <h3>Planets</h3>
     <div className="d-flex flex-row" style={{ overflowX: "auto", whiteSpace: "nowrap" }}>
-      {store.planets.map((value, index) => (
+      {store.planets?.map((value, index) => (
         <CardPlanets key={index} planet={value} />
       ))}
     </div>
 
     <h3>Vehicles</h3>
     <div className="d-flex flex-row" style={{ overflowX: "auto", whiteSpace: "nowrap" }}>
-      {store.vehicles.map((value, index) => (
+      {store.vehicles?.map((value, index) => (
         <CardVehicles key={index} vehicle={value} />
       ))}
     </div>
