@@ -4,7 +4,7 @@ export const CardPlanets = ({ planet }) => {
   return (
     <div className="card" style={{ minWidth: "18rem", marginRight: "1rem" }}>
    <img
-  src={`https://raw.githubusercontent.com/breatheco-de/swapi-images/master/planets/${planet.uid}.jpg`}
+  src={`https://raw.githubusercontent.com/breatheco-de/swapi-images/master/public/images/planets/${planet.uid}.jpg`}
   alt={planet.name}
 />
       <div className="card-body">

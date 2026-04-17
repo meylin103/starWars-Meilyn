@@ -7,6 +7,7 @@ export const CardPeople = ({ people }) => {
             <div className="card-body">
                 <h5 className="card-title">{people.name}</h5>
                 <p className="card-text">ID: {people.uid}</p>
+                <p className="card-text">Gender: {people.gender}</p>
                 <Link to={`/character/${people.uid}`} className="btn btn-primary">
                     Learn more!
                 </Link>
