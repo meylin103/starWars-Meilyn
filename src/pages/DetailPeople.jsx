@@ -1,12 +1,11 @@
 import { useParams } from "react-router-dom"
-import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const DetailPeople = () => {
 
-    const { store, dispatch } = useGlobalReducer()
     const { uid } = useParams()
-    const [detallesPersonaje, setDetallesPersonaje] = useState("")
+    const [detallesPersonaje, setDetallesPersonaje] = useState(null);
 
     function detallePersonaje() {
         fetch("https://www.swapi.tech/api/people/" + uid)
@@ -14,25 +13,49 @@ export const DetailPeople = () => {
             .then(data => setDetallesPersonaje(data.result.properties))
             .catch(err => console.error(err))
     }
-console.log(detallesPersonaje);
 
-    useEffect (()=> {
+    useEffect(() => {
         detallePersonaje()
-    }, [uid])
+    }, [uid]);
+
+
+    if (!detallesPersonaje) {
+        return <p className="text-center mt-5">Loading...</p>;
+    }
     return (
         <div className="text-center mt-5">
-            <div className="card" style={{ minWidth: "18rem", marginRight: "1rem" }}>
-                <img src="..." className="card-img-top" alt="..." />
+
+            <div className="card mx-auto" style={{ width: "20rem" }}>
+
+                <img
+                    src={`https://raw.githubusercontent.com/breatheco-de/swapi-images/master/public/images/people/${uid}.jpg`}
+                    className="card-img-top"
+                    alt={detallesPersonaje.name}
+                />
+
                 <div className="card-body">
                     <h5 className="card-title">{detallesPersonaje.name}</h5>
-                    <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum voluptate nihil deserunt consequatur. Illo in eum minus repellendus quibusdam quo eos iste quos, quidem nesciunt ipsum magnam obcaecati. Explicabo, aspernatur!</p>
                 </div>
+
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item">An item</li>
-                    <li className="list-group-item">A second item</li>
-                    <li className="list-group-item">A third item</li>
+                    <li className="list-group-item">
+                        Height: {detallesPersonaje.height}
+                    </li>
+                    <li className="list-group-item">
+                        Mass: {detallesPersonaje.mass}
+                    </li>
+                    <li className="list-group-item">
+                        Gender: {detallesPersonaje.gender}
+                    </li>
+                    <li className="list-group-item">
+                        Birth Year: {detallesPersonaje.birth_year}
+                    </li>
                 </ul>
+
             </div>
+            <Link to="/" className="btn btn-primary mt-3">
+                Back to home
+            </Link>
         </div>
     );
-}; 
+};
