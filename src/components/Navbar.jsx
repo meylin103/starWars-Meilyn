@@ -22,9 +22,6 @@ export const Navbar = () => {
 							Favorites ({store.favorites.length})
 						</button>
 					</Link>
-					<Link to="/starwars">
-						<button className="btn btn-danger">Starwars</button>
-					</Link>
 				</div>
 			</div>
 		</nav>
